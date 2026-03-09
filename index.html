@@ -17,13 +17,46 @@
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
-    "@type":"WebApplication",
-    "name":"Bruto & Neto palgakalkulaator",
-    "applicationCategory":"FinanceApplication",
-    "operatingSystem":"Web",
-    "url":"https://brutonetokalkulaator.ee/",
-    "inLanguage":["et","en","ru"],
-    "description":"Estonia salary calculator for gross to net, net to gross, and employer cost."
+    "@graph":[
+      {
+        "@type":"WebApplication",
+        "name":"Bruto & Neto palgakalkulaator",
+        "applicationCategory":"FinanceApplication",
+        "operatingSystem":"Web",
+        "url":"https://brutonetokalkulaator.ee/",
+        "inLanguage":["et","en","ru"],
+        "description":"Estonia salary calculator for gross to net, net to gross, and employer cost."
+      },
+      {
+        "@type":"FAQPage",
+        "mainEntity":[
+          {
+            "@type":"Question",
+            "name":"Kuidas arvutada netopalka brutopalgast Eestis?",
+            "acceptedAnswer":{
+              "@type":"Answer",
+              "text":"Sisesta brutopalk kalkulaatorisse. Tulemuses arvestatakse töötaja töötuskindlustus, II samba makse, maksuvaba tulu ja tulumaks ning kuvatakse netopalk." 
+            }
+          },
+          {
+            "@type":"Question",
+            "name":"Kas kalkulaator arvutab ka tööandja kogukulu?",
+            "acceptedAnswer":{
+              "@type":"Answer",
+              "text":"Jah. Kalkulaator näitab lisaks netopalgale ka tööandja sotsiaalmaksu ja tööandja kogukulu." 
+            }
+          },
+          {
+            "@type":"Question",
+            "name":"Can I calculate gross salary from net salary?",
+            "acceptedAnswer":{
+              "@type":"Answer",
+              "text":"Yes. Switch input mode to net salary, enter the amount, and the calculator estimates gross salary using Estonia payroll logic." 
+            }
+          }
+        ]
+      }
+    ]
   }
   </script>
 
@@ -264,7 +297,8 @@
     ["mode","amount","incomeTaxRate","uiRate","pensionRate","socialTaxRate","taxFreeMode","taxFreeManual"].forEach(id=>$(id).addEventListener("input",calculate));
     document.querySelectorAll('.lang button').forEach(btn=>btn.addEventListener('click',()=>setLang(btn.dataset.lang)));
 
-    setLang('et');
+    const qpLang = new URLSearchParams(location.search).get('lang');
+    setLang(['et','en','ru'].includes(qpLang) ? qpLang : 'et');
   </script>
 </body>
 </html>
