@@ -3,292 +3,268 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bruto & Neto palgakalkulaator</title>
+  <title>Bruto & Neto palgakalkulaator | brutonetokalkulaator.ee</title>
+  <meta name="description" content="Eesti bruto-neto palgakalkulaator: arvuta netopalk, brutopalk ja tööandja kogukulu. Toetab eesti, inglise ja vene keelt." />
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+  <link rel="canonical" href="https://brutonetokalkulaator.ee/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Bruto & Neto palgakalkulaator" />
+  <meta property="og:description" content="Arvuta netopalk, brutopalk või tööandja kogukulu Eesti reeglite alusel." />
+  <meta property="og:url" content="https://brutonetokalkulaator.ee/" />
+  <meta property="og:site_name" content="Bruto & Neto palgakalkulaator" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"WebApplication",
+    "name":"Bruto & Neto palgakalkulaator",
+    "applicationCategory":"FinanceApplication",
+    "operatingSystem":"Web",
+    "url":"https://brutonetokalkulaator.ee/",
+    "inLanguage":["et","en","ru"],
+    "description":"Estonia salary calculator for gross to net, net to gross, and employer cost."
+  }
+  </script>
+
   <style>
-    :root {
-      --bg: #f4f7ff;
-      --card: #ffffff;
-      --text: #17223b;
-      --muted: #5f6b85;
-      --line: #d8e0f5;
-      --primary: #2f59ff;
-      --primary-soft: #eef2ff;
-      --ok: #169b62;
-      --shadow: 0 12px 30px rgba(34, 62, 128, .12);
-    }
-
-    * { box-sizing: border-box; }
-
-    body {
-      margin: 0;
-      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      color: var(--text);
-      background:
-        radial-gradient(1200px 600px at 10% -10%, #dfe7ff 0%, transparent 60%),
-        radial-gradient(1000px 500px at 100% 0%, #e8f0ff 0%, transparent 60%),
-        var(--bg);
-      min-height: 100vh;
-    }
-
-    .wrap {
-      max-width: 960px;
-      margin: 32px auto;
-      padding: 20px;
-    }
-
-    .card {
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      box-shadow: var(--shadow);
-      overflow: hidden;
-    }
-
-    .hero {
-      padding: 22px 24px;
-      background: linear-gradient(135deg, #f6f9ff 0%, #eef3ff 100%);
-      border-bottom: 1px solid var(--line);
-    }
-
-    h1 {
-      margin: 0;
-      font-size: clamp(1.35rem, 2.8vw, 2rem);
-      line-height: 1.2;
-    }
-
-    .subtitle {
-      margin: 8px 0 0;
-      color: var(--muted);
-      font-size: .95rem;
-    }
-
-    .content {
-      padding: 20px;
-      display: grid;
-      grid-template-columns: 1.1fr .9fr;
-      gap: 16px;
-    }
-
-    .panel {
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      padding: 16px;
-      background: #fff;
-    }
-
-    .panel h2 {
-      margin: 0 0 12px;
-      font-size: 1rem;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-    }
-
-    .full { grid-column: 1 / -1; }
-
-    label {
-      display: block;
-      font-size: .9rem;
-      color: var(--muted);
-    }
-
-    input, select {
-      width: 100%;
-      margin-top: 6px;
-      border: 1px solid #cfd8f2;
-      background: #fff;
-      color: var(--text);
-      border-radius: 10px;
-      padding: 10px 11px;
-      font-size: .95rem;
-      outline: none;
-    }
-
-    input:focus, select:focus {
-      border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(47, 89, 255, .15);
-    }
-
-    .result {
-      background: var(--primary-soft);
-    }
-
-    .row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 0;
-      border-bottom: 1px dashed #cbd8ff;
-      font-size: .94rem;
-    }
-
-    .row:last-child { border-bottom: 0; }
-
-    .row strong { font-variant-numeric: tabular-nums; }
-
-    .neto {
-      margin-top: 4px;
-      background: #e7fff3;
-      border: 1px solid #bcefd3;
-      border-radius: 10px;
-      padding: 10px;
-    }
-
-    .neto .big {
-      font-size: 1.35rem;
-      font-weight: 800;
-      color: var(--ok);
-    }
-
-    .note {
-      margin-top: 10px;
-      color: var(--muted);
-      font-size: .82rem;
-      line-height: 1.4;
-    }
-
-    @media (max-width: 860px) {
-      .content { grid-template-columns: 1fr; }
-    }
-
-    @media (max-width: 640px) {
-      .grid { grid-template-columns: 1fr; }
-      .wrap { padding: 14px; margin: 18px auto; }
-      .hero { padding: 18px; }
-      .content { padding: 14px; }
-    }
+    :root { --bg:#f4f7ff; --card:#fff; --text:#17223b; --muted:#5f6b85; --line:#d8e0f5; --primary:#2f59ff; --soft:#eef2ff; --ok:#169b62; }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--text)}
+    .wrap{max-width:1000px;margin:24px auto;padding:16px}
+    .card{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 12px 30px rgba(34,62,128,.12)}
+    .hero{padding:20px;border-bottom:1px solid var(--line);background:linear-gradient(135deg,#f6f9ff 0%,#eef3ff 100%)}
+    h1{margin:0;font-size:clamp(1.3rem,2.8vw,2rem)}
+    .subtitle{margin:8px 0 0;color:var(--muted)}
+    .lang{display:flex;gap:8px;margin-top:12px}
+    .lang button{border:1px solid #cfd8f2;background:#fff;border-radius:10px;padding:6px 10px;cursor:pointer}
+    .lang button.active{background:var(--primary);color:#fff;border-color:var(--primary)}
+    .content{display:grid;grid-template-columns:1.1fr .9fr;gap:14px;padding:16px}
+    .panel{border:1px solid var(--line);border-radius:14px;padding:14px}
+    .result{background:var(--soft)}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .full{grid-column:1/-1}
+    label{display:block;color:var(--muted);font-size:.9rem}
+    input,select{width:100%;margin-top:6px;padding:10px;border:1px solid #cfd8f2;border-radius:10px}
+    .row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px dashed #cbd8ff;font-size:.94rem}
+    .row:last-child{border-bottom:0}
+    .net{margin-top:8px;background:#e7fff3;border:1px solid #bcefd3;border-radius:10px;padding:10px}
+    .big{font-size:1.3rem;font-weight:800;color:var(--ok)}
+    .seo{margin-top:14px;color:var(--muted);font-size:.9rem;line-height:1.5}
+    .seo h2{color:var(--text);font-size:1rem}
+    @media (max-width:860px){.content{grid-template-columns:1fr}}
+    @media (max-width:640px){.grid{grid-template-columns:1fr}}
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <div class="card">
-      <div class="hero">
-        <h1>Bruto & Neto palgakalkulaator</h1>
-        <p class="subtitle">Eesti töötajale (kuu lõikes). Sisesta brutopalk ja vaata netosummat kohe.</p>
-      </div>
+  <main class="wrap">
+    <article class="card">
+      <header class="hero">
+        <h1 id="h1">Bruto & Neto palgakalkulaator</h1>
+        <p class="subtitle" id="subtitle">Eesti töötajale: arvuta brutopalk, netopalk või tööandja kogukulu.</p>
+        <nav class="lang" aria-label="Language switcher">
+          <button data-lang="et" class="active">🇪🇪 ET</button>
+          <button data-lang="en">🇬🇧 EN</button>
+          <button data-lang="ru">🇷🇺 RU</button>
+        </nav>
+      </header>
 
-      <div class="content">
+      <section class="content">
         <section class="panel">
-          <h2>Sisendid</h2>
+          <h2 id="inputsTitle">Sisendid</h2>
           <div class="grid">
-            <div>
-              <label>Brutopalk (€ / kuu)
-                <input id="gross" type="number" min="0" step="0.01" value="2000" />
+            <div class="full">
+              <label id="modeLabel">Mida soovid sisestada?
+                <select id="mode">
+                  <option value="gross">Brutopalk</option>
+                  <option value="net">Netopalk</option>
+                  <option value="cost">Tööandja kogukulu</option>
+                </select>
               </label>
             </div>
-
+            <div class="full">
+              <label id="amountLabel">Summa (€ / kuu)
+                <input id="amount" type="number" min="0" step="0.01" value="2000" />
+              </label>
+            </div>
             <div>
-              <label>Tulumaks (%)
+              <label id="incomeTaxLabel">Tulumaks (%)
                 <input id="incomeTaxRate" type="number" min="0" step="0.01" value="22" />
               </label>
             </div>
-
             <div>
-              <label>Töötuskindlustus (töötaja, %)
+              <label id="uiLabel">Töötuskindlustus (töötaja, %)
                 <input id="uiRate" type="number" min="0" step="0.01" value="1.6" />
               </label>
             </div>
-
             <div>
-              <label>Kogumispension (II sammas)
+              <label id="pensionLabel">Kogumispension (II sammas)
                 <select id="pensionRate">
-                  <option value="0">0% (ei liitu)</option>
+                  <option value="0">0%</option>
                   <option value="2" selected>2%</option>
                   <option value="4">4%</option>
                   <option value="6">6%</option>
                 </select>
               </label>
             </div>
-
             <div>
-              <label>Maksuvaba tulu
+              <label id="socialLabel">Sotsiaalmaks (tööandja, %)
+                <input id="socialTaxRate" type="number" min="0" step="0.01" value="33" />
+              </label>
+            </div>
+            <div>
+              <label id="taxFreeModeLabel">Maksuvaba tulu
                 <select id="taxFreeMode">
                   <option value="auto" selected>Automaatne (Eesti valem)</option>
-                  <option value="manual">Sisestan käsitsi</option>
+                  <option value="manual">Käsitsi</option>
                 </select>
               </label>
             </div>
-
             <div>
-              <label>Käsitsi maksuvaba (€ / kuu)
+              <label id="taxFreeManualLabel">Käsitsi maksuvaba (€)
                 <input id="taxFreeManual" type="number" min="0" step="0.01" value="654" />
-              </label>
-            </div>
-
-            <div class="full">
-              <label>Sotsiaalmaks (tööandja, %)
-                <input id="socialTaxRate" type="number" min="0" step="0.01" value="33" />
               </label>
             </div>
           </div>
         </section>
 
         <section class="panel result" id="result"></section>
-      </div>
-    </div>
-  </div>
+      </section>
+
+      <section class="panel seo">
+        <h2 id="seoH">Kuidas kalkulaator töötab?</h2>
+        <p id="seoP1">See kalkulaator kasutab Eesti tavapärast palgaloogikat töötaja vaates: brutopalk, tulumaks, töötuskindlustus, kogumispension ja tööandja sotsiaalmaks. Tulemus on hinnanguline.</p>
+        <p id="seoP2">Sobib päringutele nagu “bruto neto kalkulaator”, “netopalk brutosse”, “tööandja kogukulu kalkulaator”, “Estonia salary calculator”.</p>
+      </section>
+    </article>
+  </main>
 
   <script>
     const $ = (id) => document.getElementById(id);
-    const fmt = (n) => new Intl.NumberFormat('et-EE', { style: 'currency', currency: 'EUR' }).format(n);
+    let lang = 'et';
 
-    function monthlyTaxFreeAuto(gross) {
+    const i18n = {
+      et: {
+        h1: 'Bruto & Neto palgakalkulaator', subtitle: 'Eesti töötajale: arvuta brutopalk, netopalk või tööandja kogukulu.',
+        inputsTitle:'Sisendid', modeLabel:'Mida soovid sisestada?', amountLabel:'Summa (€ / kuu)',
+        incomeTaxLabel:'Tulumaks (%)', uiLabel:'Töötuskindlustus (töötaja, %)', pensionLabel:'Kogumispension (II sammas)',
+        socialLabel:'Sotsiaalmaks (tööandja, %)', taxFreeModeLabel:'Maksuvaba tulu', taxFreeManualLabel:'Käsitsi maksuvaba (€)',
+        modeGross:'Brutopalk', modeNet:'Netopalk', modeCost:'Tööandja kogukulu',
+        taxAuto:'Automaatne (Eesti valem)', taxManual:'Käsitsi',
+        rGross:'Brutopalk', rUi:'Töötuskindlustus (töötaja)', rPension:'Kogumispension (II sammas)', rTaxFree:'Maksuvaba tulu',
+        rIncomeTax:'Tulumaks', rDed:'Töötaja mahaarvamised kokku', rNet:'Neto palk', rSocial:'Sotsiaalmaks (tööandja)', rCost:'Tööandja kogukulu',
+        note:'Märkus: tulemus on hinnanguline ja võib erineda tegelikust palgaarvestusest.',
+        seoH:'Kuidas kalkulaator töötab?', seoP1:'See kalkulaator kasutab Eesti tavapärast palgaloogikat töötaja vaates: brutopalk, tulumaks, töötuskindlustus, kogumispension ja tööandja sotsiaalmaks. Tulemus on hinnanguline.', seoP2:'Sobib päringutele nagu “bruto neto kalkulaator”, “netopalk brutosse”, “tööandja kogukulu kalkulaator”, “Estonia salary calculator”.'
+      },
+      en: {
+        h1:'Gross & Net Salary Calculator', subtitle:'For Estonia employees: calculate gross salary, net salary, or total employer cost.',
+        inputsTitle:'Inputs', modeLabel:'What do you want to enter?', amountLabel:'Amount (€ / month)', incomeTaxLabel:'Income tax (%)',
+        uiLabel:'Unemployment insurance (employee, %)', pensionLabel:'Funded pension (2nd pillar)', socialLabel:'Employer social tax (%)',
+        taxFreeModeLabel:'Tax-free allowance', taxFreeManualLabel:'Manual tax-free amount (€)', modeGross:'Gross salary', modeNet:'Net salary', modeCost:'Total employer cost',
+        taxAuto:'Automatic (Estonia formula)', taxManual:'Manual',
+        rGross:'Gross salary', rUi:'Unemployment insurance (employee)', rPension:'Funded pension (2nd pillar)', rTaxFree:'Tax-free allowance', rIncomeTax:'Income tax', rDed:'Total employee deductions', rNet:'Net salary', rSocial:'Employer social tax', rCost:'Total employer cost',
+        note:'Note: this is an estimate and may differ from final payroll calculations.',
+        seoH:'How does this calculator work?', seoP1:'This calculator follows common Estonian employee payroll logic: gross salary, income tax, unemployment insurance, funded pension and employer social tax.', seoP2:'Useful for searches like “Estonia salary calculator”, “net to gross Estonia”, “gross to net Estonia”.'
+      },
+      ru: {
+        h1:'Калькулятор зарплаты брутто/нетто', subtitle:'Для работников в Эстонии: расчет брутто, нетто и полной стоимости работодателя.',
+        inputsTitle:'Параметры', modeLabel:'Что вы хотите ввести?', amountLabel:'Сумма (€ / месяц)', incomeTaxLabel:'Подоходный налог (%)',
+        uiLabel:'Страхование от безработицы (работник, %)', pensionLabel:'Накопительная пенсия (II ступень)', socialLabel:'Соцналог работодателя (%)',
+        taxFreeModeLabel:'Необлагаемый минимум', taxFreeManualLabel:'Необлагаемая сумма вручную (€)', modeGross:'Зарплата брутто', modeNet:'Зарплата нетто', modeCost:'Полная стоимость работодателя',
+        taxAuto:'Авто (формула Эстонии)', taxManual:'Вручную',
+        rGross:'Брутто', rUi:'Страхование от безработицы (работник)', rPension:'Накопительная пенсия (II ступень)', rTaxFree:'Необлагаемый минимум', rIncomeTax:'Подоходный налог', rDed:'Всего удержаний работника', rNet:'Зарплата нетто', rSocial:'Соцналог работодателя', rCost:'Полная стоимость работодателя',
+        note:'Примечание: расчет ориентировочный и может отличаться от фактической зарплатной ведомости.',
+        seoH:'Как работает калькулятор?', seoP1:'Калькулятор использует стандартную логику расчета зарплаты в Эстонии: брутто, подоходный налог, страхование от безработицы, накопительная пенсия и соцналог работодателя.', seoP2:'Подходит для запросов: “зарплата нетто Эстония”, “брутто в нетто Эстония”, “калькулятор зарплаты Эстония”.'
+      }
+    };
+
+    const fmt = (n) => new Intl.NumberFormat(lang === 'ru' ? 'ru-RU' : (lang === 'en' ? 'en-EE' : 'et-EE'), { style: 'currency', currency: 'EUR' }).format(n);
+
+    function monthlyTaxFreeAuto(gross){
       if (gross <= 1200) return 654;
       if (gross >= 2100) return 0;
-      const amount = 654 - (654 / 900) * (gross - 1200);
-      return Math.max(0, amount);
+      return Math.max(0, 654 - (654 / 900) * (gross - 1200));
     }
 
-    function calculate() {
-      const gross = Number($("gross").value) || 0;
-      const incomeTaxRate = (Number($("incomeTaxRate").value) || 0) / 100;
-      const uiRate = (Number($("uiRate").value) || 0) / 100;
-      const pensionRate = (Number($("pensionRate").value) || 0) / 100;
-      const socialTaxRate = (Number($("socialTaxRate").value) || 0) / 100;
-      const taxFreeMode = $("taxFreeMode").value;
-      const taxFreeManual = Number($("taxFreeManual").value) || 0;
+    function fromGross(gross){
+      const incomeTaxRate=(Number($("incomeTaxRate").value)||0)/100;
+      const uiRate=(Number($("uiRate").value)||0)/100;
+      const pensionRate=(Number($("pensionRate").value)||0)/100;
+      const socialTaxRate=(Number($("socialTaxRate").value)||0)/100;
+      const taxFreeMode=$("taxFreeMode").value;
+      const taxFreeManual=Number($("taxFreeManual").value)||0;
 
-      const unemployment = gross * uiRate;
-      const pension = gross * pensionRate;
-      const taxFree = taxFreeMode === "auto" ? monthlyTaxFreeAuto(gross) : Math.max(0, taxFreeManual);
-      const taxableIncome = Math.max(0, gross - unemployment - pension - taxFree);
-      const incomeTax = taxableIncome * incomeTaxRate;
+      const unemployment=gross*uiRate;
+      const pension=gross*pensionRate;
+      const taxFree=taxFreeMode==='auto' ? monthlyTaxFreeAuto(gross) : Math.max(0,taxFreeManual);
+      const taxableIncome=Math.max(0,gross-unemployment-pension-taxFree);
+      const incomeTax=taxableIncome*incomeTaxRate;
+      const deductions=unemployment+pension+incomeTax;
+      const net=gross-deductions;
+      const social=gross*socialTaxRate;
+      const cost=gross+social;
+      return {gross, unemployment, pension, taxFree, incomeTax, deductions, net, social, cost};
+    }
 
-      const totalEmployeeDeductions = unemployment + pension + incomeTax;
-      const netSalary = gross - totalEmployeeDeductions;
-      const employerSocialTax = gross * socialTaxRate;
-      const totalEmployerCost = gross + employerSocialTax;
+    function grossFromNet(targetNet){
+      let lo=0, hi=50000;
+      for(let i=0;i<40;i++){
+        const mid=(lo+hi)/2;
+        const net=fromGross(mid).net;
+        if(net<targetNet) lo=mid; else hi=mid;
+      }
+      return (lo+hi)/2;
+    }
 
-      $("result").innerHTML = `
-        <div class="row"><span>Brutopalk</span><strong>${fmt(gross)}</strong></div>
-        <div class="row"><span>Töötuskindlustus (töötaja)</span><strong>- ${fmt(unemployment)}</strong></div>
-        <div class="row"><span>Kogumispension (II sammas)</span><strong>- ${fmt(pension)}</strong></div>
-        <div class="row"><span>Maksuvaba tulu</span><strong>${fmt(taxFree)}</strong></div>
-        <div class="row"><span>Tulumaks</span><strong>- ${fmt(incomeTax)}</strong></div>
-        <div class="row"><span>Töötaja mahaarvamised kokku</span><strong>- ${fmt(totalEmployeeDeductions)}</strong></div>
-
-        <div class="neto">
-          <div class="row" style="border:0;padding:0;">
-            <span><strong>Neto palk</strong></span>
-            <span class="big">${fmt(netSalary)}</span>
-          </div>
-        </div>
-
-        <div class="row" style="margin-top:8px;"><span>Sotsiaalmaks (tööandja)</span><strong>${fmt(employerSocialTax)}</strong></div>
-        <div class="row"><span>Tööandja kogukulu</span><strong>${fmt(totalEmployerCost)}</strong></div>
-
-        <p class="note">Märkus: kalkulaator annab hinnangulise tulemuse. Täpne arvestus võib erineda (soodustused, lisad, aasta ümberarvutus).</p>
+    function calculate(){
+      const mode=$("mode").value;
+      const amount=Number($("amount").value)||0;
+      let gross=amount;
+      if(mode==='net') gross=grossFromNet(amount);
+      if(mode==='cost') {
+        const socialTaxRate=(Number($("socialTaxRate").value)||0)/100;
+        gross = amount / (1+socialTaxRate);
+      }
+      const r=fromGross(gross);
+      const t=i18n[lang];
+      $("result").innerHTML=`
+        <div class="row"><span>${t.rGross}</span><strong>${fmt(r.gross)}</strong></div>
+        <div class="row"><span>${t.rUi}</span><strong>- ${fmt(r.unemployment)}</strong></div>
+        <div class="row"><span>${t.rPension}</span><strong>- ${fmt(r.pension)}</strong></div>
+        <div class="row"><span>${t.rTaxFree}</span><strong>${fmt(r.taxFree)}</strong></div>
+        <div class="row"><span>${t.rIncomeTax}</span><strong>- ${fmt(r.incomeTax)}</strong></div>
+        <div class="row"><span>${t.rDed}</span><strong>- ${fmt(r.deductions)}</strong></div>
+        <div class="net"><div class="row" style="border:0;padding:0"><strong>${t.rNet}</strong><span class="big">${fmt(r.net)}</span></div></div>
+        <div class="row" style="margin-top:8px"><span>${t.rSocial}</span><strong>${fmt(r.social)}</strong></div>
+        <div class="row"><span>${t.rCost}</span><strong>${fmt(r.cost)}</strong></div>
+        <p style="margin:10px 0 0;color:#5f6b85;font-size:.84rem">${t.note}</p>
       `;
     }
 
-    ["gross", "incomeTaxRate", "uiRate", "pensionRate", "taxFreeMode", "taxFreeManual", "socialTaxRate"]
-      .forEach(id => $(id).addEventListener("input", calculate));
+    function setLang(next){
+      lang=next;
+      document.documentElement.lang=next;
+      const t=i18n[lang];
+      $("h1").textContent=t.h1; $("subtitle").textContent=t.subtitle; $("inputsTitle").textContent=t.inputsTitle;
+      $("modeLabel").childNodes[0].nodeValue=t.modeLabel;
+      $("amountLabel").childNodes[0].nodeValue=t.amountLabel;
+      $("incomeTaxLabel").childNodes[0].nodeValue=t.incomeTaxLabel;
+      $("uiLabel").childNodes[0].nodeValue=t.uiLabel;
+      $("pensionLabel").childNodes[0].nodeValue=t.pensionLabel;
+      $("socialLabel").childNodes[0].nodeValue=t.socialLabel;
+      $("taxFreeModeLabel").childNodes[0].nodeValue=t.taxFreeModeLabel;
+      $("taxFreeManualLabel").childNodes[0].nodeValue=t.taxFreeManualLabel;
+      const mode = $("mode"); mode.options[0].text=t.modeGross; mode.options[1].text=t.modeNet; mode.options[2].text=t.modeCost;
+      const tfm=$("taxFreeMode"); tfm.options[0].text=t.taxAuto; tfm.options[1].text=t.taxManual;
+      $("seoH").textContent=t.seoH; $("seoP1").textContent=t.seoP1; $("seoP2").textContent=t.seoP2;
+      document.querySelectorAll('.lang button').forEach(b=>b.classList.toggle('active', b.dataset.lang===lang));
+      calculate();
+    }
 
-    calculate();
+    ["mode","amount","incomeTaxRate","uiRate","pensionRate","socialTaxRate","taxFreeMode","taxFreeManual"].forEach(id=>$(id).addEventListener("input",calculate));
+    document.querySelectorAll('.lang button').forEach(btn=>btn.addEventListener('click',()=>setLang(btn.dataset.lang)));
+
+    setLang('et');
   </script>
 </body>
 </html>
