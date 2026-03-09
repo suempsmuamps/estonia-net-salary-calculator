@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Estonia Net Salary Calculator</title>
+  <style>
+    :root { color-scheme: light dark; }
+    body {
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      margin: 0;
+      background: #0b1020;
+      color: #e8ecff;
+    }
+    .wrap {
+      max-width: 760px;
+      margin: 40px auto;
+      padding: 24px;
+    }
+    .card {
+      background: #141b34;
+      border: 1px solid #27315d;
+      border-radius: 14px;
+      padding: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.25);
+    }
+    h1 { margin: 0 0 8px; font-size: 1.6rem; }
+    p { opacity: .9; }
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 16px;
+    }
+    .full { grid-column: 1 / -1; }
+    label { font-size: .92rem; opacity: .95; }
+    input, select {
+      width: 100%;
+      margin-top: 6px;
+      border: 1px solid #344079;
+      background: #0c1430;
+      color: #f2f5ff;
+      border-radius: 10px;
+      padding: 10px 12px;
+      box-sizing: border-box;
+    }
+    .result {
+      margin-top: 18px;
+      background: #0f1737;
+      border: 1px solid #344079;
+      border-radius: 12px;
+      padding: 14px;
+    }
+    .row {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 6px 0;
+      border-bottom: 1px dashed #2b376d;
+    }
+    .row:last-child { border-bottom: 0; }
+    .big {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #7de2a8;
+    }
+    .note {
+      margin-top: 12px;
+      font-size: .85rem;
+      opacity: .8;
+    }
+    @media (max-width: 640px) {
+      .grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <h1>Estonia Net Salary Calculator</h1>
+      <p>For employees. Enter monthly gross salary and options below.</p>
+
+      <div class="grid">
+        <div>
+          <label>Gross salary (€ / month)
+            <input id="gross" type="number" min="0" step="0.01" value="2000" />
+          </label>
+        </div>
+
+        <div>
+          <label>Income tax rate (%)
+            <input id="incomeTaxRate" type="number" min="0" step="0.01" value="22" />
+          </label>
+        </div>
+
+        <div>
+          <label>Employee unemployment insurance (%)
+            <input id="uiRate" type="number" min="0" step="0.01" value="1.6" />
+          </label>
+        </div>
+
+        <div>
+          <label>Funded pension (II pillar)
+            <select id="pensionRate">
+              <option value="0">0% (not joined)</option>
+              <option value="2" selected>2%</option>
+              <option value="4">4%</option>
+              <option value="6">6%</option>
+            </select>
+          </label>
+        </div>
+
+        <div>
+          <label>Basic tax-free amount mode
+            <select id="taxFreeMode">
+              <option value="auto" selected>Auto (Estonia monthly formula)</option>
+              <option value="manual">Manual amount</option>
+            </select>
+          </label>
+        </div>
+
+        <div>
+          <label>Manual tax-free amount (€ / month)
+            <input id="taxFreeManual" type="number" min="0" step="0.01" value="654" />
+          </label>
+        </div>
+
+        <div>
+          <label>Employer social tax (%)
+            <input id="socialTaxRate" type="number" min="0" step="0.01" value="33" />
+          </label>
+        </div>
+      </div>
+
+      <div class="result" id="result"></div>
+
+      <div class="note">
+        Notes: This calculator is an estimate and may not reflect all real-life cases (benefits, special deductions, yearly reconciliation). Verify with payroll/accounting.
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const $ = (id) => document.getElementById(id);
+    const fmt = (n) => new Intl.NumberFormat('en-EE', { style: 'currency', currency: 'EUR' }).format(n);
+
+    function monthlyTaxFreeAuto(gross) {
+      // Estonia basic exemption monthly approximation:
+      // up to 1200 -> 654
+      // 1200..2100 -> 654 - 0.72667*(gross-1200)
+      // above 2100 -> 0
+      if (gross <= 1200) return 654;
+      if (gross >= 2100) return 0;
+      const amount = 654 - (654 / 900) * (gross - 1200);
+      return Math.max(0, amount);
+    }
+
+    function calculate() {
+      const gross = Number($("gross").value) || 0;
+      const incomeTaxRate = (Number($("incomeTaxRate").value) || 0) / 100;
+      const uiRate = (Number($("uiRate").value) || 0) / 100;
+      const pensionRate = (Number($("pensionRate").value) || 0) / 100;
+      const socialTaxRate = (Number($("socialTaxRate").value) || 0) / 100;
+      const taxFreeMode = $("taxFreeMode").value;
+      const taxFreeManual = Number($("taxFreeManual").value) || 0;
+
+      const unemployment = gross * uiRate;
+      const pension = gross * pensionRate;
+
+      const taxFree = taxFreeMode === "auto"
+        ? monthlyTaxFreeAuto(gross)
+        : Math.max(0, taxFreeManual);
+
+      const taxableIncome = Math.max(0, gross - unemployment - pension - taxFree);
+      const incomeTax = taxableIncome * incomeTaxRate;
+
+      const totalEmployeeDeductions = unemployment + pension + incomeTax;
+      const netSalary = gross - totalEmployeeDeductions;
+
+      const employerSocialTax = gross * socialTaxRate;
+      const totalEmployerCost = gross + employerSocialTax;
+
+      $("result").innerHTML = `
+        <div class="row"><span>Gross salary</span><strong>${fmt(gross)}</strong></div>
+        <div class="row"><span>Unemployment insurance (employee)</span><strong>- ${fmt(unemployment)}</strong></div>
+        <div class="row"><span>Funded pension (II pillar)</span><strong>- ${fmt(pension)}</strong></div>
+        <div class="row"><span>Tax-free amount used</span><strong>${fmt(taxFree)}</strong></div>
+        <div class="row"><span>Income tax</span><strong>- ${fmt(incomeTax)}</strong></div>
+        <div class="row"><span>Total employee deductions</span><strong>- ${fmt(totalEmployeeDeductions)}</strong></div>
+        <div class="row big"><span>Net salary</span><span>${fmt(netSalary)}</span></div>
+        <div class="row"><span>Employer social tax</span><strong>${fmt(employerSocialTax)}</strong></div>
+        <div class="row"><span>Total employer cost</span><strong>${fmt(totalEmployerCost)}</strong></div>
+      `;
+    }
+
+    ["gross", "incomeTaxRate", "uiRate", "pensionRate", "taxFreeMode", "taxFreeManual", "socialTaxRate"]
+      .forEach(id => $(id).addEventListener("input", calculate));
+
+    calculate();
+  </script>
+</body>
+</html>
