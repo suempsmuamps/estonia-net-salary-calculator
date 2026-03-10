@@ -2,12 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://brutonetokalkulaator.ee/</loc>
-    <lastmod>2026-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="et" href="https://brutonetokalkulaator.ee/?lang=et" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://brutonetokalkulaator.ee/?lang=en" />
-    <xhtml:link rel="alternate" hreflang="ru" href="https://brutonetokalkulaator.ee/?lang=ru" />
+    <xhtml:link rel="alternate" hreflang="et" href="https://brutonetokalkulaator.ee/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://brutonetokalkulaator.ee/en/" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://brutonetokalkulaator.ee/ru/" />
+    <xhtml:link rel="alternate" hreflang="fi" href="https://brutonetokalkulaator.ee/fi/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://brutonetokalkulaator.ee/" />
   </url>
+  <url><loc>https://brutonetokalkulaator.ee/en/</loc></url>
+  <url><loc>https://brutonetokalkulaator.ee/ru/</loc></url>
+  <url><loc>https://brutonetokalkulaator.ee/fi/</loc></url>
 </urlset>
