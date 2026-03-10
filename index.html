@@ -21,9 +21,14 @@
     .calc-cat h4{margin:0 0 8px;font-size:.92rem;color:#263a7a;display:flex;align-items:center;gap:8px}.calc-links{display:flex;flex-direction:column;gap:8px}
     .calc-links a{text-decoration:none;border:1px solid #cfd8f2;background:#fff;color:var(--text);padding:8px 10px;border-radius:10px;font-size:.9rem;display:flex;justify-content:space-between;align-items:center}.calc-links .go{font-weight:700;color:#3d5ce8}
     .content{display:grid;grid-template-columns:1.1fr .9fr;gap:14px;padding:16px}.panel{border:1px solid var(--line);border-radius:14px;padding:14px}
+    .content .panel:first-child{border:2px solid #b7c8ff;background:linear-gradient(180deg,#ffffff 0%,#f7faff 100%);box-shadow:0 10px 26px rgba(47,89,255,.12)}
+    .content .panel:first-child h2,.content .panel:first-child label{color:#2a3f7a}
+    .content .panel:first-child input,.content .panel:first-child select{border:1.5px solid #bfd0ff;background:#fff}
+    .content .panel:first-child input:focus,.content .panel:first-child select:focus{outline:none;border-color:#2f59ff;box-shadow:0 0 0 3px rgba(47,89,255,.14)}
     .grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.full{grid-column:1/-1}
     label{display:block;color:var(--muted);font-size:.9rem}input,select{width:100%;margin-top:6px;padding:10px;border:1px solid #cfd8f2;border-radius:10px}
-    .result{background:var(--soft)}.row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px dashed #cbd8ff}.row:last-child{border-bottom:0}
+    .result{background:linear-gradient(180deg,#eef3ff 0%,#e8efff 100%);border:2px solid #c8d7ff}.row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px dashed #cbd8ff}.row:last-child{border-bottom:0}
+    .content .panel:first-child::before{content:'Kalkulaator';display:inline-block;margin-bottom:10px;font-size:.78rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:#3554d6;background:#e9efff;border:1px solid #c8d7ff;padding:4px 8px;border-radius:999px}
     .net{margin-top:8px;background:#e7fff3;border:1px solid #bcefd3;border-radius:10px;padding:10px}.big{font-size:1.3rem;font-weight:800;color:var(--ok)}
     .method h2{margin:0 0 8px;font-size:1rem}.method ul{margin:0;padding-left:18px;color:var(--muted);line-height:1.45}
     .sources{background:#fbfcff;border-color:#edf1fb}
